@@ -1,3 +1,7 @@
+import cssCertificate from "@/assets/certificado-css.jpg.asset.json";
+import javascriptCertificate from "@/assets/certificado-javascript.jpg.asset.json";
+import logicCertificate from "@/assets/certificado-logica.jpg.asset.json";
+
 export const profile = {
   name: "Paulo Vitor Marques de Almeida",
   shortName: "Paulo Vitor Marques",
@@ -17,6 +21,7 @@ export const navigation = [
 ];
 export const skills = [
   { id: "js", name: "JavaScript", description: "Interatividade e experiências dinâmicas na web." },
+  { id: "react", name: "React", description: "Interfaces reativas e componentes reutilizáveis para a web." },
   {
     id: "frontend",
     name: "Front-End",
@@ -63,34 +68,34 @@ export type Certificate = {
 export const certificates: Certificate[] = [
   {
     id: 1,
-    name: "Adicionar nome do curso",
-    institution: "Adicionar instituição",
-    year: "Ano a definir",
-    hours: "Carga horária a definir",
-    image: null,
+    name: "Explorando os Fundamentos do CSS",
+    institution: "DIO",
+    year: "2026",
+    hours: "16 horas",
+    image: cssCertificate.url,
   },
   {
     id: 2,
-    name: "Adicionar nome do curso",
-    institution: "Adicionar instituição",
-    year: "Ano a definir",
-    hours: "Carga horária a definir",
-    image: null,
+    name: "Lógica Aplicada com Javascript",
+    institution: "DIO",
+    year: "2026",
+    hours: "10 horas",
+    image: javascriptCertificate.url,
   },
   {
     id: 3,
-    name: "Adicionar nome do curso",
-    institution: "Adicionar instituição",
-    year: "Ano a definir",
-    hours: "Carga horária a definir",
-    image: null,
+    name: "Introdução à Lógica de Programação",
+    institution: "DIO",
+    year: "2026",
+    hours: "7 horas",
+    image: logicCertificate.url,
   },
 ];
 export const education = [
   {
     course: "Engenharia de Software",
-    institution: "Instituição a informar",
-    period: "Período a informar",
+    institution: "Estácio",
+    period: "2º período",
     status: "Em andamento",
   },
 ];

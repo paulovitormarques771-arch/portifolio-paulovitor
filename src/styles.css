@@ -662,6 +662,15 @@
 .skill-frontend .skill-symbol svg {
   animation-name: code-scan;
 }
+.skill-react .skill-symbol svg {
+  animation-name: orbit;
+  animation-duration: 24s;
+  animation-timing-function: linear;
+}
+.certificate-open {
+  white-space: normal;
+  height: auto;
+}
 .skill-logic .skill-symbol svg {
   animation-name: connect;
 }
