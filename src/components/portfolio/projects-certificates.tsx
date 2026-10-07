@@ -1,13 +1,177 @@
-import { useState } from 'react';
-import { Github, ArrowUpRight, Award, ImagePlus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { certificates, profile, type Certificate } from '@/lib/portfolio-data';
-import { projects } from '@/lib/portfolio-projects';
-import { Reveal, SectionHeading } from './shared';
-export function Projects() { return <section id="projetos" className="section-band alternate-band"><div className="container-shell"><Reveal><div className="flex flex-wrap items-start justify-between gap-4"><SectionHeading number="03" eyebrow="Do código à experiência" title="Meus" accent="Projetos" description="Uma seleção do que venho construindo e aprendendo."/><Button asChild variant="link" className="mt-5 text-xs"><a href={`${profile.github}?tab=repositories`} target="_blank" rel="noopener noreferrer">Todos no GitHub <ArrowUpRight/></a></Button></div><div className="project-grid">{projects.map(project => <article className="project-card" key={project.name}><img src={project.image} alt={`Página do projeto ${project.name}`} className="project-cover" width="640" height="400" loading="lazy"/><div className="project-body"><span className="font-mono text-[8px] text-metallic">{project.category}</span><h3 className="mt-2">{project.name}</h3><p>{project.description}</p><div className="project-tags">{project.technologies.map(tech => <span className="project-tag" key={tech}>{tech}</span>)}</div><div className="project-actions"><Button asChild variant="link" className="h-auto p-0 text-[11px]"><a href={project.demo || project.github} target="_blank" rel="noopener noreferrer">Ver projeto <ArrowUpRight/></a></Button><Button asChild variant="ghost" size="sm" className="text-[10px] text-muted-foreground"><a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub de ${project.name}`}><Github size={13}/> GitHub</a></Button></div></div></article>)}</div></Reveal></div></section>; }
-function CertificatePreview({certificate,large=false}:{certificate:Certificate;large?:boolean}) { return <div className={`certificate-preview ${large?'min-h-64 m-0':''}`}>{certificate.image ? <img src={certificate.image} alt={`Certificado de ${certificate.name}`}/> : <><Award size={large?65:36} strokeWidth={1}/><span>IMAGEM DO CERTIFICADO A ADICIONAR</span></>}</div>; }
+import { useState } from "react";
+import { Github, ArrowUpRight, Award, ImagePlus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { certificates, profile, type Certificate } from "@/lib/portfolio-data";
+import { projects } from "@/lib/portfolio-projects";
+import { Reveal, SectionHeading } from "./shared";
+export function Projects() {
+  return (
+    <section id="projetos" className="section-band alternate-band">
+      <div className="container-shell">
+        <Reveal>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <SectionHeading
+              number="03"
+              eyebrow="Do código à experiência"
+              title="Meus"
+              accent="Projetos"
+              description="Uma seleção do que venho construindo e aprendendo."
+            />
+            <Button asChild variant="link" className="mt-5 text-xs">
+              <a
+                href={`${profile.github}?tab=repositories`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Todos no GitHub <ArrowUpRight />
+              </a>
+            </Button>
+          </div>
+          <div className="project-grid">
+            {projects.map((project) => (
+              <article className="project-card" key={project.name}>
+                <img
+                  src={project.image}
+                  alt={`Página do projeto ${project.name}`}
+                  className="project-cover"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                />
+                <div className="project-body">
+                  <span className="font-mono text-[8px] text-metallic">{project.category}</span>
+                  <h3 className="mt-2">{project.name}</h3>
+                  <p>{project.description}</p>
+                  <div className="project-tags">
+                    {project.technologies.map((tech) => (
+                      <span className="project-tag" key={tech}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="project-actions">
+                    <Button asChild variant="link" className="h-auto p-0 text-[11px]">
+                      <a
+                        href={project.demo || project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Ver projeto <ArrowUpRight />
+                      </a>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="text-[10px] text-muted-foreground"
+                    >
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`GitHub de ${project.name}`}
+                      >
+                        <Github size={13} /> GitHub
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+function CertificatePreview({
+  certificate,
+  large = false,
+}: {
+  certificate: Certificate;
+  large?: boolean;
+}) {
+  return (
+    <div className={`certificate-preview ${large ? "min-h-64 m-0" : ""}`}>
+      {certificate.image ? (
+        <img src={certificate.image} alt={`Certificado de ${certificate.name}`} />
+      ) : (
+        <>
+          <Award size={large ? 65 : 36} strokeWidth={1} />
+          <span>IMAGEM DO CERTIFICADO A ADICIONAR</span>
+        </>
+      )}
+    </div>
+  );
+}
 export function Certificates() {
- const [selected,setSelected]=useState<Certificate|null>(null);
- return <section id="certificados" className="section-band"><div className="container-shell"><Reveal><div className="flex flex-wrap justify-between items-start gap-4"><SectionHeading number="04" eyebrow="Aprendizado contínuo" title="Cursos &" accent="Certificações" description="Cada etapa de aprendizado é um passo a mais na minha jornada."/><Button asChild variant="link" className="mt-5 text-xs"><a href="https://web.dio.me/certificates" target="_blank" rel="noopener noreferrer">Área de certificados DIO <ArrowUpRight/></a></Button></div><div className="certificate-grid">{certificates.map(certificate => <article className="certificate-card" key={certificate.id}><Button variant="certificate" onClick={()=>setSelected(certificate)} aria-label={`Visualizar certificado ${certificate.id}`}><CertificatePreview certificate={certificate}/><div className="certificate-details"><div className="flex items-center justify-between gap-3"><h3>{certificate.name}</h3><ImagePlus size={15} className="shrink-0 text-metallic"/></div><p>{certificate.institution}</p><div className="certificate-meta"><span>{certificate.year}</span><span>{certificate.hours}</span></div></div></Button></article>)}</div></Reveal></div><Dialog open={selected!==null} onOpenChange={open=>{if(!open)setSelected(null);}}><DialogContent className="max-w-2xl w-[calc(100%-32px)] rounded-lg">{selected && <><DialogTitle>{selected.name}</DialogTitle><DialogDescription>{selected.institution} · {selected.year} · {selected.hours}</DialogDescription><CertificatePreview certificate={selected} large/><p className="text-center text-xs text-muted-foreground">Certificado a adicionar. Nenhuma certificação foi informada ainda.</p></>}</DialogContent></Dialog></section>;
+  const [selected, setSelected] = useState<Certificate | null>(null);
+  return (
+    <section id="certificados" className="section-band">
+      <div className="container-shell">
+        <Reveal>
+          <div className="flex flex-wrap justify-between items-start gap-4">
+            <SectionHeading
+              number="04"
+              eyebrow="Aprendizado contínuo"
+              title="Cursos &"
+              accent="Certificações"
+              description="Cada etapa de aprendizado é um passo a mais na minha jornada."
+            />
+            <Button asChild variant="link" className="mt-5 text-xs">
+              <a href="https://web.dio.me/certificates" target="_blank" rel="noopener noreferrer">
+                Área de certificados DIO <ArrowUpRight />
+              </a>
+            </Button>
+          </div>
+          <div className="certificate-grid">
+            {certificates.map((certificate) => (
+              <article className="certificate-card" key={certificate.id}>
+                <Button
+                  variant="certificate"
+                  onClick={() => setSelected(certificate)}
+                  aria-label={`Visualizar certificado ${certificate.id}`}
+                >
+                  <CertificatePreview certificate={certificate} />
+                  <div className="certificate-details">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3>{certificate.name}</h3>
+                      <ImagePlus size={15} className="shrink-0 text-metallic" />
+                    </div>
+                    <p>{certificate.institution}</p>
+                    <div className="certificate-meta">
+                      <span>{certificate.year}</span>
+                      <span>{certificate.hours}</span>
+                    </div>
+                  </div>
+                </Button>
+              </article>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+      <Dialog
+        open={selected !== null}
+        onOpenChange={(open) => {
+          if (!open) setSelected(null);
+        }}
+      >
+        <DialogContent className="max-w-2xl w-[calc(100%-32px)] rounded-lg">
+          {selected && (
+            <>
+              <DialogTitle>{selected.name}</DialogTitle>
+              <DialogDescription>
+                {selected.institution} · {selected.year} · {selected.hours}
+              </DialogDescription>
+              <CertificatePreview certificate={selected} large />
+              <p className="text-center text-xs text-muted-foreground">
+                Certificado a adicionar. Nenhuma certificação foi informada ainda.
+              </p>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
 }
