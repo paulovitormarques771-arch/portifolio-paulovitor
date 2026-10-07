@@ -48,6 +48,7 @@ export const skills = [
 // Example levels supplied in the brief. Edit labels and levels to reflect your knowledge.
 export const mastery = [
   { name: "JavaScript", level: "Avançado" },
+  { name: "React", level: "Avançado" },
   { name: "Front-End", level: "Avançado" },
   { name: "HTML / CSS", level: "Avançado" },
   { name: "Git", level: "Intermediário" },
