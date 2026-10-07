@@ -16,7 +16,7 @@ export function Projects() {
               eyebrow="Do código à experiência"
               title="Meus"
               accent="Projetos"
-              description="Uma seleção do que venho construindo e aprendendo."
+              description="Tenho uma biblioteca com mais de 10 projetos. Abaixo estão alguns deles."
             />
             <Button asChild variant="link" className="mt-5 text-xs">
               <a
@@ -136,8 +136,8 @@ export function Certificates() {
                   <CertificatePreview certificate={certificate} />
                   <div className="certificate-details">
                     <div className="flex items-center justify-between gap-3">
-                      <h3>{certificate.name}</h3>
-                      <ImagePlus size={15} className="shrink-0 text-metallic" />
+                      <h3 className="min-w-0">{certificate.name}</h3>
+                      {certificate.image ? <Award size={15} className="shrink-0 text-metallic" /> : <ImagePlus size={15} className="shrink-0 text-metallic" />}
                     </div>
                     <p>{certificate.institution}</p>
                     <div className="certificate-meta">
@@ -165,9 +165,9 @@ export function Certificates() {
                 {selected.institution} · {selected.year} · {selected.hours}
               </DialogDescription>
               <CertificatePreview certificate={selected} large />
-              <p className="text-center text-xs text-muted-foreground">
+              {!selected.image && <p className="text-center text-xs text-muted-foreground">
                 Certificado a adicionar. Nenhuma certificação foi informada ainda.
-              </p>
+              </p>}
             </>
           )}
         </DialogContent>

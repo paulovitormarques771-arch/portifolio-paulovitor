@@ -12,6 +12,7 @@ import {
   Leaf,
   Hexagon,
   Braces,
+  Atom,
 } from "lucide-react";
 import portrait from "@/assets/paulo-vitor.png.asset.json";
 import { skills, mastery } from "@/lib/portfolio-data";
@@ -78,6 +79,7 @@ export function About() {
   );
 }
 const skillIcons: Record<string, typeof Code2> = {
+  react: Atom,
   frontend: Monitor,
   logic: Workflow,
   claude: Sparkles,
