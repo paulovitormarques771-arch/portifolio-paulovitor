@@ -1,0 +1,205 @@
+import { useState, useEffect, type FormEvent } from "react";
+import { ArrowUpRight, Send, GraduationCap, Code2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { education, journey, profile } from "@/lib/portfolio-data";
+import { Reveal, SectionHeading, SocialLinks, WhatsAppIcon, socialItems } from "./shared";
+export function Education() {
+  return (
+    <section id="formacao" className="section-band alternate-band">
+      <div className="container-shell">
+        <Reveal className="dual-timeline">
+          <div>
+            <SectionHeading
+              number="05"
+              eyebrow="Construindo uma base sólida"
+              title="Formação"
+              accent="Acadêmica"
+            />
+            <div className="timeline">
+              {education.map((item) => (
+                <article className="timeline-item" key={item.course}>
+                  <div className="status-label">
+                    <span className="h-1.5 w-1.5 rounded-full bg-success" />
+                    {item.status}
+                  </div>
+                  <GraduationCap size={25} className="text-metallic mb-4" />
+                  <h3 className="text-lg">{item.course}</h3>
+                  <p>
+                    {item.institution}
+                    <br />
+                    {item.period}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-8 flex items-center gap-4 border-t border-border pt-6 text-muted-foreground">
+              <Code2 size={23} className="text-metallic" />
+              <p className="text-[11px] leading-7">
+                Conhecimento que se transforma
+                <br />
+                em prática, um projeto de cada vez.
+              </p>
+            </div>
+          </div>
+          <div>
+            <SectionHeading
+              number="06"
+              eyebrow="Sempre em movimento"
+              title="Minha Jornada"
+              accent="na Tecnologia"
+            />
+            <div className="journey-grid">
+              {journey.map((step, index) => (
+                <div key={step} className="timeline">
+                  <article className="timeline-item journey-item">
+                    <span className="journey-index">
+                      ETAPA {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{step}</h3>
+                  </article>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+export function Contact() {
+  const [prepared, setPrepared] = useState(false);
+  function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const message = String(data.get("message") || "");
+    const body = `Olá, Paulo!\n\n${message}\n\n${name}\n${email}`;
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(`Contato pelo portfólio — ${name}`)}&body=${encodeURIComponent(body)}`;
+    setPrepared(true);
+  }
+  return (
+    <section id="contato" className="section-band">
+      <div className="container-shell">
+        <Reveal className="contact-grid">
+          <div>
+            <div className="eyebrow">07 / Vamos conversar</div>
+            <h2 className="contact-title">
+              Vamos criar algo
+              <br />
+              <span>incrível juntos?</span>
+            </h2>
+            <p className="contact-copy">
+              Estou aberto a oportunidades, projetos, networking e novos desafios na área de
+              tecnologia.
+            </p>
+            <div className="mt-7">
+              <SocialLinks />
+            </div>
+            <Button asChild variant="portfolio" className="mt-8">
+              <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon />
+                Falar comigo pelo WhatsApp <ArrowUpRight />
+              </a>
+            </Button>
+            <a
+              href={`mailto:${profile.email}`}
+              className="block mt-5 text-[10px] text-muted-foreground break-all"
+            >
+              {profile.email}
+            </a>
+          </div>
+          <form className="contact-form" onSubmit={submit}>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label>
+                Nome
+                <input
+                  name="name"
+                  placeholder="Seu nome"
+                  autoComplete="name"
+                  required
+                  maxLength={100}
+                />
+              </label>
+              <label>
+                E-mail
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="voce@email.com"
+                  autoComplete="email"
+                  required
+                  maxLength={200}
+                />
+              </label>
+            </div>
+            <label>
+              Mensagem
+              <textarea
+                name="message"
+                placeholder="Conte um pouco sobre sua ideia..."
+                required
+                minLength={5}
+                maxLength={5000}
+              />
+            </label>
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-mono text-[9px] text-muted-foreground">
+                Vamos conectar ideias.
+              </span>
+              <Button variant="portfolio" type="submit">
+                Enviar mensagem <Send />
+              </Button>
+            </div>
+            <p className="text-[10px] text-muted-foreground" role="status">
+              {prepared
+                ? "Mensagem preparada. Conclua o envio no seu aplicativo de e-mail."
+                : "O envio será aberto no seu aplicativo de e-mail."}
+            </p>
+          </form>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+export function Footer() {
+  const [year, setYear] = useState(2026);
+  useEffect(() => setYear(new Date().getFullYear()), []);
+  return (
+    <footer className="footer">
+      <div className="container-shell">
+        <div className="footer-main">
+          <a href="#inicio" className="flex items-center gap-3">
+            <span className="brand-mark">&lt;pv/&gt;</span>
+            <div className="font-display text-[11px] font-medium">
+              PAULO VITOR MARQUES
+              <span className="block mt-1 text-[9px] font-normal text-muted-foreground">
+                Desenvolvedor Front-End | JavaScript
+              </span>
+            </div>
+          </a>
+          <div className="flex flex-wrap gap-5">
+            {socialItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="text-[10px] text-muted-foreground hover:text-primary transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© {year} Paulo Vitor Marques. Todos os direitos reservados.</p>
+          <p>
+            Desenvolvido com tecnologia, criatividade e{" "}
+            <span className="text-metallic">código.</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
