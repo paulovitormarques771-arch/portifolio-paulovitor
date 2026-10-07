@@ -11,7 +11,7 @@ export const socialItems = [
 export function SocialLinks() { return <div className="social-links">{socialItems.map(({name,href,Icon}) => <a key={name} href={href} className="social-link" aria-label={name} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"><Icon size={15}/><span className="social-tooltip" role="tooltip">{name}</span></a>)}</div>; }
 export function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
  const ref = useRef<HTMLDivElement>(null);
- useEffect(() => { const el = ref.current; if (!el) return; const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); observer.unobserve(el); } }, {threshold: .08}); observer.observe(el); return () => observer.disconnect(); }, []);
+ useEffect(() => { const el = ref.current; if (!el) return; const observer = new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) { el.classList.add('visible'); observer.unobserve(el); } }, {threshold: .08}); observer.observe(el); return () => observer.disconnect(); }, []);
  return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
 }
 export function SectionHeading({ number, eyebrow, title, accent, description }: { number: string; eyebrow: string; title: string; accent?: string; description?: string }) {

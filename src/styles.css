@@ -203,7 +203,7 @@
 @keyframes typing { 0%,100% { opacity: 1; } 45% { opacity: .45; } }
 @media (min-width: 1600px) { .hero-section { min-height: 850px; padding-top: 205px; } }
 @media (max-width: 1100px) { .hero-grid { gap: 35px; } .hero-title { font-size: 55px; } .portrait-frame { width: 320px; height: 320px; } .skill-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } .about-grid { gap: 45px; } .dual-timeline { gap: 55px; } .contact-grid { gap: 55px; } }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .container-shell { width: calc(100% - 40px); }
   .hero-section { padding-top: 118px; min-height: auto; padding-bottom: 32px; }
   .hero-grid { grid-template-columns: 1fr; gap: 60px; }
